@@ -24,7 +24,7 @@ echo "Created book at $book_url\n";
 
 //download a copy of the tar.gz to the source directory
 $book_directory = dirname(__FILE__)."/www/source/{$book_edition}";
-$book_tar = "{$book_directory}/{$book_edition}.tar.gz";
+$book_tar = "{$book_directory}.tar.gz";
 file_put_contents($book_tar, file_get_contents($book_url));
 
 //untar the book into the source directory

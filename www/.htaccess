@@ -1,0 +1,5 @@
+#if it doesn't start with current or archive, rewrite it to current
+Options +FollowSymlinks
+RewriteEngine On
+RewriteCond %{REQUEST_URI} /(.*)
+RewriteRule !^(current|archive|source) current/%1

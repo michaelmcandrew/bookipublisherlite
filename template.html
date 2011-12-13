@@ -4,7 +4,7 @@ body{
 	font-family:georgia;
 	margin:0px;
 }
-.header{
+#header{
 	border-top: 10px solid #9B1240;
 	background-color:#eefdff;
 	border-bottom: 3px solid #8FCBD8;	
@@ -12,36 +12,42 @@ body{
 	color: #167082;	
 }
 
-.header h1{
+#header h1{
 	font-weight:normal;
 	font-family: Arial;
 }
 
 
-.menu{
+#menu{
 	float:left;
 	width:200px;
-	border-right: 1px solid #8FCBD8;
 	padding: 20px;
 }
 
-.content{
+#content{
 	float:left;
 	padding: 20px;
 }
 
-.footer{
+#footer{
 	background-color:#8FCBD8;
 	clear:both;
 	padding: 20px;
 }
 
+#menu ul
+{
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
 </style>
 
 
-<div class='header'><h1>CiviCRM user and administrator guide</h1></div>
-<div class='menu'><menu-goes-here/>menu</div>
-<div class='content'><content-goes-here/>content</div>
-<div class='footer'>
-<p>This book is for CiviCRM version x.x. CiviCRM documenation is community driven.  If you would like to help improve documentation ***</p>
+<div id='header'><h1>CiviCRM user and administrator guide</h1></div>
+<div id='menu'><menu-goes-here/>menu</div>
+<div id='content'><content-goes-here />content</div>
+<div id='footer'>
+<p>Edition X for CiviCRM version x.x. CiviCRM documenation is community driven.  We welcome your involvement in improving this documentation.</p>
 </div>
