@@ -1,0 +1,63 @@
+body{
+	font-family:georgia;
+	margin:0px;
+}
+
+a{
+	color: #9B3554;
+}
+#header{
+	border-top: 10px solid #9B1240;
+	background-color:#eefdff;
+	border-bottom: 3px solid #8FCBD8;	
+	padding: 0px 20px;
+	color: #167082;	
+}
+
+#menu{
+	float:left;
+	width:200px;
+	padding: 20px;
+	font-size:12px;
+}
+
+#content{
+	float: left;
+    margin-left: 50px;
+    padding: 20px;
+    width: 600px;
+    min-height: 400px;
+}
+
+#footer{
+	background-color:#8FCBD8;
+	clear:both;
+	padding: 20px;
+}
+
+#menu ul
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#menu li
+{
+list-style: none;
+padding: 7px 0px;
+margin: 0;
+}
+
+#menu li.booki-section
+{
+	font-weight:bold;
+	padding-top: 14px;
+	margin-top: 7px;
+	color: #167082;	
+	border-top: 2px solid #8FCBD8;
+}
+
+#edition {
+	font-weight: bold;
+}

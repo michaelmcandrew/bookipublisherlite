@@ -48,9 +48,9 @@ $contents=file_get_contents($url);
 preg_match('#href="/books/(.+)">#', $contents, $matches);
 $book_edition = $matches[1];
 $book_url="http://{$objavi_host}/books/{$book_edition}.tar.gz";
-echo "Created book at $book_url\n";
 
 //download a copy of the tar.gz to the source directory
+echo "Downloading book from $book_url\n";
 $source_directory = dirname(__FILE__)."/www/{$book_definitions[$book]['dir_name']}/source";
 $book_directory = "{$source_directory}/{$book_edition}";
 $book_tar = "{$book_directory}.tar.gz";

@@ -1,2 +1,3 @@
 www/*
 !www/.htaccess
+!www/style.css

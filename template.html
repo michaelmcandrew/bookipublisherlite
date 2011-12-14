@@ -1,69 +1,6 @@
-<style type="text/css">
-
-body{
-	font-family:georgia;
-	margin:0px;
-}
-
-a{
-	color: #9B3554;
-}
-#header{
-	border-top: 10px solid #9B1240;
-	background-color:#eefdff;
-	border-bottom: 3px solid #8FCBD8;	
-	padding: 0px 20px;
-	color: #167082;	
-}
-
-#menu{
-	float:left;
-	width:200px;
-	padding: 20px;
-	font-size:12px;
-}
-
-#content{
-	float: left;
-    margin-left: 50px;
-    padding: 20px;
-    width: 600px;}
-
-#footer{
-	background-color:#8FCBD8;
-	clear:both;
-	padding: 20px;
-}
-
-#menu ul
-{
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-#menu li
-{
-list-style: none;
-padding: 7px 0px;
-margin: 0;
-}
-
-#menu li.booki-section
-{
-	font-weight:bold;
-	padding-top: 14px;
-	margin-top: 7px;
-	color: #167082;	
-	border-top: 2px solid #8FCBD8;
-}
-
-#edition {
-	font-weight: bold;
-}
-
+<style type="text/css" media="all">
+ @import url("/style.css");
 </style>
-
 
 <div id='header'><h1>{{{name}}}</h1></div>
 <div id='menu'>
@@ -71,7 +8,7 @@ margin: 0;
 <div id='content'><content-goes-here /></div>
 <div id='footer'>
 	<p>{{{name}}} {{{edition}}} for CiviCRM {{{civicrm-version}}}.</p>
-	<p>CiviCRM documentation is community driven: <a href="http://forum.civicrm.org/index.php/board,11.0.html">join the documentation community!</a></p>
+	<p>CiviCRM documentation is community driven - <a href="http://forum.civicrm.org/index.php/board,11.0.html">join the documentation community!</a></p>
 	<p>You can view older editions in the <a href="/{{{dir_name}}}/archive">archives</a>.</p>
-	<p>Powered by <a href="http://www.flossmanuals.org/">Flossmanuals</a></p>
+	<p>Powered by <a href="http://www.flossmanuals.org/">Flossmanuals</a>.</p>
 </div>
