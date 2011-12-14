@@ -6,6 +6,10 @@ body{
 a{
 	color: #9B3554;
 }
+
+h1, h2, h3 {
+	color: #167082;	
+}
 #header{
 	border-top: 10px solid #9B1240;
 	background-color:#eefdff;
