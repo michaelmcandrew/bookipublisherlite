@@ -1,5 +1,5 @@
 #if it doesn't start with current or archive, rewrite it to current
 Options +FollowSymlinks
 RewriteEngine On
-RewriteCond %{REQUEST_URI} user/(.*)
-RewriteRule !^(user/current|user/archive|user/source) user/current/%1
+RewriteCond %{REQUEST_URI} /([^/]*)/(.*)
+RewriteRule !^(user|developer)/(current|archive|source) /%1/current/%2
