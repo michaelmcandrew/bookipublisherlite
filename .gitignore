@@ -2,3 +2,4 @@ www/*
 !www/.htaccess
 !www/style.css
 !www/index.php
+!www/not-found.php
