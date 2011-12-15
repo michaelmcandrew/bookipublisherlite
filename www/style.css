@@ -18,11 +18,16 @@ h1, h2, h3 {
 
 
 #header{
-	border-top: 10px solid #9B1240;
 	background-color:#eefdff;
-	border-bottom: 3px solid #8FCBD8;	
-	padding: 0px 20px;
+	border-bottom: 2px solid #8FCBD8;	
+	border-top: 2px solid #8FCBD8;	
+	padding: 16px 20px;
 	color: #167082;	
+}
+
+#header h1{
+	margin:0px;
+	padding: 0px;
 }
 
 #menu{
@@ -30,6 +35,11 @@ h1, h2, h3 {
 	width:200px;
 	padding: 20px;
 	font-size:12px;
+}
+
+.nav{
+	float:right;
+	
 }
 
 #content{

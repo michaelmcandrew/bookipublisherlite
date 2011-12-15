@@ -15,6 +15,7 @@ if(in_array($first_part_of_path, $books)){
 }
 ?>
 <link href='/style.css' rel='stylesheet' type='text/css'>
+<iframe scrolling="no" style="max-height: 35px; border: 0px; width: 100%; display: block;" src="http://civicrm.org/sites/civicrm.org/developers/index.html"></iframe>
 <div id='header'><h1>CiviCRM books</h1>
 </div>
 <div id='content'>

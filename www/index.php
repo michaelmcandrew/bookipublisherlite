@@ -1,7 +1,7 @@
 <style type="text/css" media="all">
  @import url("/style.css");
 </style>
-
+<iframe scrolling="no" style="max-height: 35px; border: 0px; width: 100%; display: block;" src="http://civicrm.org/sites/civicrm.org/developers/index.html"></iframe>
 <div id='header'><h1>CiviCRM books</h1></div>
 <div id='main'>
 <div id='content'>

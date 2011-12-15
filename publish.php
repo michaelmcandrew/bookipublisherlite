@@ -1,7 +1,7 @@
 <?php
+require_once 'simpledom.inc.php';
 
 //configuration variables (change me!)
-require_once 'simpledom.inc.php';
 
 $booki_host = 'booki.flossmanuals.net';
 $objavi_host = 'objavi.booki.cc';
@@ -13,13 +13,13 @@ $book_definitions['user']=array(
 	'dir_name'=>'user',
 	'booki_name'=>'civicrm',
 	'name'=>'CiviCRM user and administrator guide',
-	'edition'=>'4th edition',
+	'edition'=>'Fourth edition',
 	'civicrm-version'=>'4.1');
 $book_definitions['developer']=array(
 	'dir_name'=>'developer',
 	'booki_name'=>'civicrm-developer-guide',
 	'name'=>'CiviCRM developer guide',
-	'edition'=>'1st edition',
+	'edition'=>'First edition',
 	'civicrm-version'=>'4.1');
 	
 if(isset($argv[1]) && array_key_exists($argv[1], $book_definitions)){
@@ -63,11 +63,12 @@ shell_exec("mkdir -p {$book_dir}");
 shell_exec("tar -xf {$book_tar} -C {$source_dir}");
 echo "Edition $book_edition of $book was created by $objavi_host using the source at $booki_host and downloaded to {$book_dir}\n";
 
+
 echo "Starting cleanup\n";
 
 $contents = file_get_html("{$book_dir}/contents.html");
 
-//make a few arrays that gives us all the data we need to do the transformations
+//make two arrays that gives us all the data we need to do the transformations
 foreach($contents->find('ul[class=menu-goes-here]') as $toc)
 {
   foreach($toc->find('li') as $chapter)
@@ -79,14 +80,24 @@ foreach($contents->find('ul[class=menu-goes-here]') as $toc)
 	}else{
 		$link = $chapter->find('a',0);
 		//do we need to create the chapters array?
+		
 		$chapters[$link->href]['old_path'] = $link->href;
 		$chapters[$link->href]['section'] = $section;
 		$chapters[$link->href]['name'] = urlize($link->innertext);
 		$chapters[$link->href]['new_path'] = "{$sections[$section]['path']}/{$chapters[$link->href]['name']}";
 		$chapters[$link->href]['title'] = "{$book_definitions[$book]['name']} - {$sections[$section]['title']} - {$link->innertext}";
+		$chapters[$link->href]['prev_link'] = $previous_page;
+		$chapters[$previous_page]['next_link'] = $link->href;
+
+		//get ready for the next loop by setting the current $link->href to $previous_page
+		$previous_page = $link->href;
     }
   }
 }
+
+//delete the first $chapters[$previous_page] that was created when $previous_page was not initialized
+unset($chapters['']);
+
 
 //create all section directories
 echo "Creating section directories\n";
@@ -97,6 +108,22 @@ foreach ($sections as $section){
 echo "Editing HTML (links and images)\n";
 foreach ($chapters as $chapter){
 	$html = file_get_html("{$book_dir}/{$chapter['old_path']}");
+	$navs=$html->find('div[class=nav]');
+	$links=array();
+	if($chapter['prev_link']){
+		$links[]="<a href='{$chapter['prev_link']}'>previous</a> ";
+	}
+	if($chapter['next_link']){
+		$links[]="<a href='{$chapter['next_link']}'>next</a>";
+	}
+	$nav_links=implode(' | ', $links);
+	foreach($navs as $nav){
+		$nav->innertext = $nav_links;
+	}
+	
+	// we need to save and load the dom again because we add some html elements and they need to get registered in the dom.  Maybe there is a html->refresh
+	file_put_contents("{$book_dir}/{$chapter['old_path']}", $html);
+	$html = file_get_html("{$book_dir}/{$chapter['old_path']}");	
 	
 	//change links
 	foreach ($html->find('a') as $a){
