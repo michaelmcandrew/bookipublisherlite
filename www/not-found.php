@@ -26,6 +26,6 @@ if(in_array($first_part_of_path, $books)){
 	<?php if($in_book): ?>
 	<p>Try <a href="http://book.civicrm.org/<?php echo $book ?>/archive">book.civicrm.org/<?php echo $book ?>/archive</a>.	
 	<?php else: ?>
-	<p>Go to <a href="http://book.civicrm.org">book.civicrm.org</a> and then visit the archives.  You can find a link to the archives in the footer of each book.
+	<p>Go to <a href="http://book.civicrm.org">book.civicrm.org</a> and then visit the archives for each book (you can find a link to the archives in the footer of each page).
 	<?php endif; ?>
 </div>
