@@ -65,9 +65,6 @@ echo "Edition $book_edition of $book was created by $objavi_host using the sourc
 
 echo "Starting cleanup\n";
 
-$book='user';
-$book_definitions['user']['name']='CiviCRM user and administrator guide';
-$book_dir="/clients/bookipublisherlite/www/user/current";
 $contents = file_get_html("{$book_dir}/contents.html");
 
 //make a few arrays that gives us all the data we need to do the transformations
@@ -103,11 +100,13 @@ foreach ($chapters as $chapter){
 	
 	//change links
 	foreach ($html->find('a') as $a){
-		//add current class
-		if($chapter['old_path']==$a->href){
-			$a->class='current';			
+		if(in_array($a->href, array_keys($chapters))){
+			//add current class
+			if($chapter['old_path']==$a->href){
+				$a->class='current';			
+			}
+			$a->href='../'.$chapters[$a->href]['new_path'];
 		}
-		$a->href='../'.$chapters[$a->href]['new_path'];
 	}
 	foreach ($html->find('img') as $a){
 		$a->src='../'.$a->src;
@@ -126,7 +125,9 @@ $first_chapter=reset($chapters);
 shell_exec("cp {$book_dir}/{$first_chapter['new_path']} {$book_dir}/index.html\n");
 $html = file_get_html("{$book_dir}/index.html");
 foreach ($html->find('a') as $a){
-	$a->href=substr($a->href, 3);
+	if(substr($a->href, 0, 3)=='../'){
+		$a->href=substr($a->href, 3);		
+	}
 }
 foreach ($html->find('img') as $img){
 	$img->src=substr($img->src, 3);
