@@ -13,5 +13,5 @@ This site contains the set of CiviCRM books developed and maintained by CiviCRM 
 </div>
 </div>
 <div id='footer'>
-	<p>CiviCRM documentation is community driven - <a href="http://forum.civicrm.org/index.php/board,11.0.html">join the documentation community!</a></p>
+	<p>CiviCRM documentation is community driven. You can <a href="http://forum.civicrm.org/index.php/board,11.0.html">help improve documentation.</a></p>
 </div>
