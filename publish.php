@@ -14,13 +14,15 @@ $book_definitions['user']=array(
 	'booki_name'=>'civicrm',
 	'name'=>'CiviCRM user and administrator guide',
 	'edition'=>'Fourth edition',
-	'civicrm-version'=>'4.1');
+	'civicrm-version'=>'4.1',
+	'published-date'=>'Aug 2011');
 $book_definitions['developer']=array(
 	'dir_name'=>'developer',
 	'booki_name'=>'civicrm-developer-guide',
 	'name'=>'CiviCRM developer guide',
 	'edition'=>'First edition',
-	'civicrm-version'=>'4.1');
+	'civicrm-version'=>'4.1',
+	'published-date'=>'Aug 2011');
 	
 if(isset($argv[1]) && array_key_exists($argv[1], $book_definitions)){
 	$book = $argv[1];
