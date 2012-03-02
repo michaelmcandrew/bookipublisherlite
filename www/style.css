@@ -71,12 +71,17 @@ h1, h2, h3 {
 	margin: 0;
 }
 
-#menu li.booki-section
+#menu li.booki-section, .section-breadcrumb
 {
 	font-weight:bold;
+	color: #167082;
+	font-size:12px;
+}
+
+#menu li.booki-section
+{
 	padding-top: 6px;
 	margin-top: 3px;
-	color: #167082;	
 	border-top: 2px solid #8FCBD8;
 }
 
