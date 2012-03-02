@@ -31,9 +31,9 @@ if(isset($argv[1]) && array_key_exists($argv[1], $book_definitions)){
 }
 $booki_name=$book_definitions[$book]['booki_name'];
 
-
 //encode the template that we want to use
 $template=file_get_contents($template_file);
+$x=0;
 foreach($book_definitions[$book] as $s=>$r){
 	$search[$x++]='{{{'.$s.'}}}';
 	$replace[$x]=$r;
@@ -43,14 +43,13 @@ $template_encoded=rawurlencode($template);
 
 //write the URL that will be used to publish our book
 $url="http://{$objavi_host}/?book={$booki_name}&server={$booki_host}&mode=templated_html&html_template={$template_encoded}";
-
 //call the URL
-echo "Publishing $booki_name at $objavi_host\n";
+"Publishing $booki_name at $objavi_host\n";
 $contents=file_get_contents($url);
 
 //find the name of the book that will be published
-preg_match('#href="/books/(.+)">#', $contents, $matches);
-$book_edition = $matches[1];
+preg_match('#href(.+)books/(.+)">#', $contents, $matches);
+$book_edition = $matches[2];
 $book_url="http://{$objavi_host}/books/{$book_edition}.tar.gz";
 
 //download a copy of the tar.gz to the source directory
@@ -110,7 +109,7 @@ foreach ($sections as $section){
 echo "Editing HTML (links and images)\n";
 foreach ($chapters as $chapter){
 	$html = file_get_html("{$book_dir}/{$chapter['old_path']}");
-	$navs=$html->find('div[class=nav]');
+	$navs=$html->find('div[class=bc]');
 	$links=array();
 	if($chapter['prev_link']){
 		$links[]="<a href='{$chapter['prev_link']}'>previous</a> ";
@@ -120,8 +119,14 @@ foreach ($chapters as $chapter){
 	}
 	$nav_links=implode(' | ', $links);
 	foreach($navs as $nav){
-		$nav->innertext = $nav_links;
+		$nav->innertext = '$nav_links';
 	}
+	$html->find('div[class=section-breadcrumb]', 0)->innertext = $chapter['section'];;
+	$html->find('title', 0)->innertext .= ' | '.$chapter['section'].' | '.$book_definitions[$book]['name'];
+	
+	$mikey=$html->find('div[class=sectionbreadcrumb]');
+	
+	//add the breadcrumb here
 	
 	// we need to save and load the dom again because we add some html elements and they need to get registered in the dom.  Maybe there is a html->refresh
 	file_put_contents("{$book_dir}/{$chapter['old_path']}", $html);
@@ -162,7 +167,7 @@ foreach ($html->find('img') as $img){
 	$img->src=substr($img->src, 3);
 }
 file_put_contents("{$book_dir}/index.html", $html);
-echo "Finished!\n";
+echo "Finished creating book at www/{$book_definitions[$book]['dir_name']}/source/{$book_edition}\n";
 
 
 
