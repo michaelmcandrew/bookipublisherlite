@@ -1,5 +1,6 @@
 <?php
 require_once 'simpledom.inc.php';
+ini_set('default_socket_timeout', 1200);    
 
 //configuration variables (change me!)
 
@@ -86,7 +87,7 @@ foreach($contents->find('ul[class=menu-goes-here]') as $toc)
 		$chapters[$link->href]['section'] = $section;
 		$chapters[$link->href]['name'] = urlize($link->innertext);
 		$chapters[$link->href]['new_path'] = "{$sections[$section]['path']}/{$chapters[$link->href]['name']}";
-		$chapters[$link->href]['title'] = "{$book_definitions[$book]['name']} - {$sections[$section]['title']} - {$link->innertext}";
+		$chapters[$link->href]['title'] = "{$link->innertext} | {$sections[$section]['title']} | {$book_definitions[$book]['name']}";
 		$chapters[$link->href]['prev_link'] = $previous_page;
 		$chapters[$previous_page]['next_link'] = $link->href;
 
@@ -95,7 +96,7 @@ foreach($contents->find('ul[class=menu-goes-here]') as $toc)
     }
   }
 }
-
+print_r($chapters);exit;
 //delete the first $chapters[$previous_page] that was created when $previous_page was not initialized
 unset($chapters['']);
 
@@ -122,7 +123,7 @@ foreach ($chapters as $chapter){
 		$nav->innertext = '$nav_links';
 	}
 	$html->find('div[class=section-breadcrumb]', 0)->innertext = $chapter['section'];;
-	$html->find('title', 0)->innertext .= ' | '.$chapter['section'].' | '.$book_definitions[$book]['name'];
+	$html->find('title', 0)->innertext = $chapter['title'];
 	
 	$mikey=$html->find('div[class=sectionbreadcrumb]');
 	
@@ -168,11 +169,6 @@ foreach ($html->find('img') as $img){
 }
 file_put_contents("{$book_dir}/index.html", $html);
 echo "Finished creating book at www/{$book_definitions[$book]['dir_name']}/source/{$book_edition}\n";
-
-
-
-
-
 
 // a function to make nice looking urls 
 function urlize($string){

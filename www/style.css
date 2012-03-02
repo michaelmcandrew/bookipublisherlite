@@ -78,6 +78,9 @@ h1, h2, h3 {
 	font-size:12px;
 }
 
+.section-breadcrumb {
+	margin-bottom: -6px;
+}
 #menu li.booki-section
 {
 	padding-top: 6px;
@@ -86,7 +89,9 @@ h1, h2, h3 {
 }
 
 #edition {
+	margin-top: 0px;
 	font-weight: bold;
+	
 }
 
 p, li, #content {
