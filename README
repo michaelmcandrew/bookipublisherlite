@@ -1,2 +1,53 @@
 BookiPublisherLite was developed for CiviCRM to enable us to have better handling and control over how and where our books are published online.
 
+* we want to have them nicely templated and on a civicrm.org domain
+* we were having trouble with links getting broken on en.flossmanuals.net/civicrm when that site underwent upgrades, etc.  This was especially painful for us because we have lots of people deep linking into the book.  It seemed a bit unfair / impractical to put the burden on FM to keep these working for us (each project has different URL needs and if you multiply our needs by the number of projects on FM, it gets a little unmanageable)
+* we want to show archived / old versions of manuals.
+
+I initially investigated installing bookipublisher to handle this, but Adam told me it was overkill and I agreed :).  He said, start with https://github.com/eseter/BookiPublisher/blob/master/plugins/getbookgears/worker.php, look at the my_get_bookfunction, which was good advice.
+
+I used that as the basis to write https://github.com/michaelmcandrew/bookipublisherlite which is a simple template and script that produces html formatted books.  It is designed to handle CiviCRM's requirements for
+
+* multiple books
+* multiple versions
+
+You basically configure a few variables at the top of the file and run:
+
+$ php publish.php user (to publish the user guide)
+
+or
+
+$ php publish.php developer (to publish the developer guide).
+
+You can see the preliminary results of the script here:
+
+http://book.civicrm.org/user/
+
+http://book.civicrm.org/developer/
+
+Which downloads the book ready to be displayed.
+
+Behind the scenes we have a directory structure that looks like this
+
+    /book
+        /current - symbolic link to a source file
+        /archive
+            # 4th edition - symbolic link to a source file
+            # 3rd edition - symbolic link to a source file
+            # 2nd edition - symbolic link to a source file
+            # 1st edition - symbolic link to a source file
+        /source
+            # all the actual downloads, e.g. book-en-2011.12.14-10.45.21
+    /another-book
+        # same as above
+
+So after you have downloaded, you ln -s to the source directory as appropriate and you are done.  There is some .htaccess magic that rewrites the book/chapter to book/current/chapter which means most people just need to bookmark book.civicrm.org/user but if you want to look at an old version you can go to http://book.civicrm.org/user/archive/4th-edition-4.1/.  And super keen readers can look behind the scenes at http://book.civicrm.org/user/source.
+
+Things we'd like to add now are:
+
+* ability to add comments to each page
+* Link to LULU / download PDF / eBook
+* add the civicrm header bar (iframe?) at the top of the page
+* nice page not found that tells them that they should look in the archives
+
+Would be great to get feedback on this.  There is one problem that we need to solve before we can start sending people here and that is that it currently uses the ch005_the-codebase.html notation, but we need it to use the introduction/codebase.html notation - adam and co. - do you have any pointers on how I can fix that?
