@@ -96,7 +96,7 @@ foreach($contents->find('ul[class=menu-goes-here]') as $toc)
     }
   }
 }
-print_r($chapters);exit;
+
 //delete the first $chapters[$previous_page] that was created when $previous_page was not initialized
 unset($chapters['']);
 
