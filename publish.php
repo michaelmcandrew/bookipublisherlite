@@ -110,7 +110,7 @@ foreach ($sections as $section){
 echo "Editing HTML (links and images)\n";
 foreach ($chapters as $chapter){
 	$html = file_get_html("{$book_dir}/{$chapter['old_path']}");
-	$navs=$html->find('div[class=bc]');
+	$navs=$html->find('div[class=nav]');
 	$links=array();
 	if($chapter['prev_link']){
 		$links[]="<a href='{$chapter['prev_link']}'>previous</a> ";
@@ -120,7 +120,7 @@ foreach ($chapters as $chapter){
 	}
 	$nav_links=implode(' | ', $links);
 	foreach($navs as $nav){
-		$nav->innertext = '$nav_links';
+		$nav->innertext = $nav_links;
 	}
 	$html->find('div[class=section-breadcrumb]', 0)->innertext = $chapter['section'];;
 	$html->find('title', 0)->innertext = $chapter['title'];
