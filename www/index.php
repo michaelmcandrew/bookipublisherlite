@@ -16,7 +16,7 @@
 	</div>
 	</div>
 	<div id='footer'>
-		<p>CiviCRM documentation is community driven. You can <a href="http://civicrm.org/documentation">help improve documentation.</a></p>
+		<p>CiviCRM documentation is community driven. You can <a href="http://civicrm.org/participate/documentation">help improve documentation.</a></p>
 	</div>
 </body>
 
