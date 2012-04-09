@@ -1,10 +1,12 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" media="all" href="/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Francois+One|Oswald|Lato' rel='stylesheet' type='text/css'
 </head>
 
 <body>
-	<iframe scrolling="no" style="max-height: 35px; border: 0px; width: 100%; display: block;" src="http://civicrm.org/sites/civicrm.org/developers/index.html"></iframe>
+	<iframe width="100%" height="132px" scrolling="no" src="http://civicrm.org/sites/civicrm.org/developers/index.html"></iframe>
 	<div id='header'><h1>CiviCRM books</h1></div>
 	<div id='main'>
 	<div id='content'>
