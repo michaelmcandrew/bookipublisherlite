@@ -6,7 +6,7 @@
 </head>
 
 <body>
-	<iframe width="100%" height="132px" scrolling="no" src="http://civicrm.org/sites/civicrm.org/developers/index.html"></iframe>
+	<iframe width="100%" height="88px" scrolling="no" src="http://civicrm.org/sites/civicrm.org/developers/index.html"></iframe>
 	<div id='header'><h1>CiviCRM books</h1></div>
 	<div id='main'>
 	<div id='content'>
