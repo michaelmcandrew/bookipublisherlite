@@ -43,6 +43,14 @@ h2 {
 h2 a {
 	color: #056085;
 }
+ul {
+	list-style: disc outside none;
+	margin: 24px 0;
+	padding: 0 0 0 32px;
+}
+li, ol {
+	margin: 6px 0;
+}
 #header {	
 	padding: 24px 20px 0 30px;
 	color: #056085;	
@@ -79,7 +87,7 @@ h2 a {
 	color: #056085;
 }
 #menu ul {
-	list-style: none;
+	list-style: none outside none;
 	padding: 0;
 	margin: 0;
 	font-weight: 400;
