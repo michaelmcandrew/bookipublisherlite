@@ -22,10 +22,10 @@ if(in_array($first_part_of_path, $books)){
 
 <p><b><?php echo $url ?></b> was not found in any CivICRM book.</p>
 <p>It may have been renamed or moved or deleted.</p>
-<p>You might be able to find it in the archives.</p>
+<p>You might be able to find it in an older version.</p>
 	<?php if($in_book): ?>
-	<p>Try <a href="http://book.civicrm.org/<?php echo $book ?>/archive">book.civicrm.org/<?php echo $book ?>/archive</a>.	
+	<p>Try <a href="http://book.civicrm.org/<?php echo $book ?>/version">book.civicrm.org/<?php echo $book ?>/version</a>.	
 	<?php else: ?>
-	<p>Go to <a href="http://book.civicrm.org">book.civicrm.org</a> and then visit the archives for each book (you can find a link to the archives in the footer of each page).
+	<p>Go to <a href="http://book.civicrm.org">book.civicrm.org</a> and then visit the older versions for each book (you can find a link to these in the footer of each page).
 	<?php endif; ?>
 </div>

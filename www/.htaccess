@@ -1,8 +1,8 @@
-#if it doesn't start with current or archive, rewrite it to current
+#if it doesn't start with current or version, rewrite it to current
 Options +FollowSymlinks
 RewriteEngine On
 RewriteCond %{REQUEST_URI} /([^/]*)/(.*)
-RewriteRule !^(user|developer)/(current|archive|source) /%1/current/%2
+RewriteRule !^(user|developer)/(current|version|source) /%1/current/%2
 
 ErrorDocument 404 /not-found.php
 DefaultType text/html
