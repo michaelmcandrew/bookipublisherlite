@@ -1,4 +1,5 @@
 <?php
+
 require_once 'simpledom.inc.php';
 ini_set('default_socket_timeout', 1200);    
 
@@ -14,16 +15,14 @@ $book_definitions['user']=array(
 	'dir_name'=>'user',
 	'booki_name'=>'civicrm',
 	'name'=>'CiviCRM user and administrator guide',
-	'edition'=>'Fourth edition',
-	'civicrm-version'=>'4.1',
-	'published-date'=>'Aug 2011');
+	'civicrm-version'=>'4.2',
+	'published-date'=> date('M Y'));
 $book_definitions['developer']=array(
 	'dir_name'=>'developer',
 	'booki_name'=>'civicrm-developer-guide',
 	'name'=>'CiviCRM developer guide',
-	'edition'=>'First edition',
-	'civicrm-version'=>'4.1',
-	'published-date'=>'Aug 2011');
+	'civicrm-version'=>'4.2',
+	'published-date'=> date('M Y'));
 	
 if(isset($argv[1]) && array_key_exists($argv[1], $book_definitions)){
 	$book = $argv[1];
