@@ -3,7 +3,7 @@
 	padding: 0;
 }
 body {
-	font-family: Verdana, Helvetica, sans-serif;
+	font-family: Cantarell,Helvetica,Arial,sans-serif;
 	margin: 0;
 	font-size: 14px;
 	color: #1f1f1f;
@@ -22,6 +22,7 @@ p {
 a.current, .nav a {
 	background-color: #8fce6a;
 	color: #fff;
+	font-size:11px;
 }
 .nav a {
 	padding: 3px 6px;
@@ -29,12 +30,13 @@ a.current, .nav a {
 }
 h1, h2, h3 {
 	color: #056085;	
-	font-weight: normal;
-	font-family: Verdana, Helvetica, sans-serif;
+	font-family: lato,oswald,"Francois One",Arial,Helvetica,sans-serif;
 }
+
+
 h1 {
 	padding-bottom: 8px;
-	font-size: 20px;
+	font-size: 24px;
 }
 h2 {
 	font-size: 18px;
@@ -43,33 +45,52 @@ h2 {
 h2 a {
 	color: #056085;
 }
-ul {
-	list-style: disc outside none;
+ul, ol {
 	margin: 24px 0;
 	padding: 0 0 0 32px;
 }
-li, ol {
+ul {
+	list-style: disc outside none;
+}
+li {
 	margin: 6px 0;
 }
+
 #header {	
-	color: #056085;	
-	border-top: 2px solid #056085;
+	color: #A66054;	
+	border-top: 1px solid #BBB;
+	border-bottom: solid 6px #8FCE6A;
 }
+
 #version {	
-	background-color: #F1F2F3;
-	padding: 3px;
-	color: #056085;	
-	border-top: 2px solid #056085;
+	padding: 8  px;
+	padding-left: 15px;
+	color: #A66054;
+	font-size: 12px;
 }
+
+#search-box{
+    padding:20px;
+}
+
 #header h1 {
-	padding: 24px 20px 0 30px;
+	color: #056085;    
+	padding: 15px;
+	padding-bottom: 5px;
+	font-weight: bold;
 	margin: 0px;
 	font-size: 26px;
 }
+
+#search-box {
+    float: right;
+    width: 500px;
+}
+
 #menu {
 	float: left;
 	width: 200px;
-	padding: 20px;
+	padding: 15px;
 	font-size: 12px;
 }
 .nav {
@@ -77,43 +98,56 @@ li, ol {
 }
 #content {
 	float: left;
-    margin-left: 10px;
-    padding: 20px;
+    margin-left: 20px;
+    padding: 2px 20px ;
     width: 600px;
     min-height: 400px;
 }
-#footer {
-	background-color: #8FCE6A;
-	color: #fff;
-	clear: both;
-	padding: 20px;
+
+#menu{
+    background-color: #056085;
+    margin-bottom:30px
 }
-#footer a {
-	color: #056085;
-}
+
 #menu ul {
 	list-style: none outside none;
 	padding: 0;
 	margin: 0;
-	font-weight: 400;
+	font-weight: bold;
 }
 #menu li {
 	list-style: none;
 	padding: 3px 0px;
-	margin: 0;
+	padding-left:3px;
+	margin: 0px;
+	font-weight: normal;
 }
+
+#menu li, #menu li a{
+	color: #FFF;
+}
+
 #menu li.booki-section, .section-breadcrumb {
 	font-weight: bold;
-	color: #056085;
 	font-size: 12px;
 }
 .section-breadcrumb {
 	margin-bottom: 16px;
 }
 #menu li.booki-section {
-	padding-top: 6px;
+    font-style: italic;
+    text-transform:uppercase;
+	padding-top: 20px;
+	padding-bottom: 5px;
+	padding-left: 0px;
 	margin-top: 3px;
-	border-top: 1px solid #056085;
+	margin-left: 0px;
+}
+
+#menu li.first {
+	border-top: none;
+	padding-top: 0px;
+	margin-top: 0px;
 }
 #edition {
 	margin-top: 0px;
@@ -125,9 +159,39 @@ p, li, #content {
 	line-height: 160%;
 }
 
-#toolbox {
-    border: solid #056085 3px;
+#right-menu {
     width: 200px;
     float: left;
-    padding: 20px;
+    padding-left:40px;
 }
+
+#right-menu h2 {
+    padding-bottom:4px;
+}
+
+#formats img{
+    vertical-align:middle;
+}
+
+#epub,#pdf{
+    color: #A66054;
+    width:180px;
+    margin:0px;
+    margin-bottom: 20px;
+    padding:5px;
+    font-weight: bold;
+}
+
+#footer {
+	background-color: #056085;
+	border-top: solid 6px #8FCE6A;
+	color: #fff;
+	clear: both;
+	padding: 20px;
+}
+#footer a {
+	text-decoration: underline;
+	color: white;
+}
+
+
