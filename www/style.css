@@ -30,7 +30,7 @@ a.current, .nav a {
 h1, h2, h3 {
 	color: #056085;	
 	font-weight: normal;
-	font-family: 'Lato', 'Oswald', 'Francoise One', Verdana, Sans-serif;
+	font-family: Verdana, Helvetica, sans-serif;
 }
 h1 {
 	padding-bottom: 8px;
@@ -52,13 +52,18 @@ li, ol {
 	margin: 6px 0;
 }
 #header {	
-	padding: 24px 20px 0 30px;
+	color: #056085;	
+	border-top: 2px solid #056085;
+}
+#version {	
+	background-color: #F1F2F3;
+	padding: 3px;
 	color: #056085;	
 	border-top: 2px solid #056085;
 }
 #header h1 {
+	padding: 24px 20px 0 30px;
 	margin: 0px;
-	padding: 0px;
 	font-size: 26px;
 }
 #menu {
@@ -118,4 +123,11 @@ li, ol {
 }
 p, li, #content {
 	line-height: 160%;
+}
+
+#toolbox {
+    border: solid #056085 3px;
+    width: 200px;
+    float: left;
+    padding: 20px;
 }

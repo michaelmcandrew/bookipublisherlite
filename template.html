@@ -1,28 +1,51 @@
 <html>
 <head>
 	  <title></title>
-	<link rel="stylesheet" type="text/css" media="all" href="/style.css" />
+	  <!-- Put the following javascript before the closing </head> tag. -->
+      <script>
+        (function() {
+          var cx = '015078211275853146731:a_jgoxrdufw';
+          var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+          gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+              '//www.google.co.uk/cse/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+        })();
+      </script>
+
+      <!-- Place this tag where you want both of the search box and the search results to render -->
+      
 </head>
 <body>
-<link href='/style.css' rel='stylesheet' type='text/css'>
+<link href='www/style.css' rel='stylesheet' type='text/css'>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <iframe scrolling="no" style="max-height: 35px; border: 0px; width: 100%; display: block;" src="http://civicrm.org/sites/civicrm.org/developers/index.html"></iframe>
-<div id='header'><h1>{{{name}}}</h1></div>
+<div id='header'>
+    <div id='version'>Written for version {{{version}}}, {{{published-date}}} <?php include $_SERVER['DOCUMENT_ROOT']""?></div>
+	<h1>{{{title}}}</h1>
+</div>
 <div id='menu'>
-	<p id='edition'>For version {{{civicrm-version}}}, {{{published-date}}}</p>
-	<p id='epub'><a href="civicrm">ePub</a></p>
-	<p id='pdf'><a href="">PDF</a></p>
 	<menu-goes-here/>
 </div>
-	<>
 <div id='content'>
 	<div class='nav'></div>
 	<div class='section-breadcrumb'></div>
 	<content-goes-here />
 	<div class='nav'></div>
 </div>
+<div id='formats'>
+    <div id='epub'><a href="../../{{{full-id}}}.epub">ePub</a></div>
+    <div id='pdf'><a href="../../{{{full-id}}}.pdf">pdf</a></div>
+</div>
+<div id='search'>
+        Search all CiviCRM books 
+        <gcse:search></gcse:search>
+</div>
+
+
 <div id='footer'>
-<p>{{{name}}}. {{{edition}}} for CiviCRM {{{civicrm-version}}}. Published {{{published-date}}} under <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2+</a>. View <a href="/{{{dir_name}}}/version">older editions of this book</a>.</p>
-<p>CiviCRM documentation is community driven. You can <a href="http://civicrm.org/participate/documentation">help improve documentation</a>. This book is powered by <a href="http://www.flossmanuals.org/">Flossmanuals</a>.</p>
+    <p>{{{name}}}. Written for CiviCRM {{{version}}}. Published {{{published-date}}} under <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2+</a>. View <a href="/{{{dir_name}}}/version">older editions of this book</a>.</p>
+    <p>CiviCRM documentation is community driven. You can <a href="http://civicrm.org/participate/documentation">help improve documentation</a>. This book is powered by <a href="http://www.flossmanuals.org/">Flossmanuals</a>.</p>
 </div>
 </body>
 </html>

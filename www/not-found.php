@@ -20,7 +20,7 @@ if(in_array($first_part_of_path, $books)){
 </div>
 <div id='content'>
 
-<p><b><?php echo $url ?></b> was not found in any CivICRM book.</p>
+<p><b><?php echo $url ?></b> was not found in any CiviCRM book.</p>
 <p>It may have been renamed or moved or deleted.</p>
 <p>You might be able to find it in an older version.</p>
 	<?php if($in_book): ?>
