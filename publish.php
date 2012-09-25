@@ -100,7 +100,7 @@ class Publisher{
         
         $this->bookVars = $bookVars;
         $this->downloadTime = date('Y.m.d-h.i.s');
-
+        echo "ID is {$this->downloadTime}\n";
         // ...creating the publish directory
 
         $this->baseDir = dirname(__FILE__);
