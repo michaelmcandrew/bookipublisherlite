@@ -10,7 +10,8 @@ RewriteRule !^(user|developer)/(current|version|source) /%1/current/%2
 
 #otherwise add .php to it
 #RewriteRule (.+) -> /%1.php 
-
+DefaultType text/html
+AddType application/octet-stream epub
 ErrorDocument 404 /not-found.php
 
 

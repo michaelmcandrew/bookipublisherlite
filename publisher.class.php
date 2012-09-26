@@ -119,7 +119,8 @@ class Publisher{
         		$chapters[$link->href]['old_path'] = $link->href;
         		$chapters[$link->href]['section'] = $section;
         		$chapters[$link->href]['name'] = $this->urlize($link->innertext);
-        		$chapters[$link->href]['new_path'] = "{$sections[$section]['path']}/{$chapters[$link->href]['name']}.php";
+        		$chapters[$link->href]['new_path'] = "{$sections[$section]['path']}/{$chapters[$link->href]['name']}/index.php";
+        		$chapters[$link->href]['new_link'] = "{$sections[$section]['path']}/{$chapters[$link->href]['name']}";
         		$chapters[$link->href]['title'] = "{$link->innertext} | {$sections[$section]['title']} | {$this->bookVars['title']}";
         		$chapters[$link->href]['prev_link'] = $previous_page;
         		$chapters[$link->href]['next_link'] = '';
@@ -135,12 +136,11 @@ class Publisher{
         //delete the first $chapters[$previous_page] that was created when $previous_page was not initialized
         unset($chapters['']);
 
-        //create all section directories
+        //create all section and chapter directories
         echo "* creating section directories\n";
-        foreach ($sections as $section){
-        	exec("mkdir {$this->publishDir}/{$section['path']}");
+        foreach ($chapters as $chapter){
+        	exec("mkdir -p {$this->publishDir}/{$chapter['new_link']}");
         }
-
         echo "* editing HTML (links and images)\n";
         foreach ($chapters as $chapter){
         	$html = file_get_html("{$this->publishDir}/{$chapter['old_path']}");
@@ -176,7 +176,7 @@ class Publisher{
         			if($chapter['old_path']==$a->href){
         				$a->class='current';			
         			}
-        			$a->href='../'.$chapters[$a->href]['new_path'];
+        			$a->href='../'.$chapters[$a->href]['new_link'];
         		}
         	}
         	foreach ($html->find('img') as $a){
