@@ -1,76 +1,5 @@
 <?php
 
-//initialise book
-
-$book = new Book;
-$book->version = 4.2;
-
-//check book is defined
-
-if(isset($argv[1]) && array_key_exists($argv[1], $book->definitions)){
-	$book->id = $argv[1];
-} else {
-	exit("{$argv[1]} is not a defined book\n");
-}
-
-// initialise book publisher
-
-$publisher = new Publisher($book->getAll());
-
-//download files
-
-$publisher->download('epub');
-$publisher->download('pdf');
-$publisher->download('html');
-
-//massage html in online version
-
-$publisher->massageHtml();
-
-class Book{
-    
-    var $id;
-    
-    var $definitions = array(
-        'user' => array(
-            'name'=>'user',
-        	'booki-name'=>'civicrm',
-        	'title'=>'CiviCRM user and administrator guide',
-    ),
-        
-        
-        'developer' => array(
-        	'name'=>'developer',
-        	'booki-name'=>'civicrm-developer-guide',
-        	'title'=>'CiviCRM developer guide',
-        )
-    );
-    
-    var $version;
-        
-    function getVersion(){
-        return $this->version;
-    }
-
-    function getDate(){
-        return date('M Y');
-    }
-
-    function getFullId(){
-        $lowercasedate = strtolower(str_replace(' ', '-', $this->getDate()));
-        return "civicrm-{$this->getVersion()}-{$this->id}-book-{$lowercasedate}";
-    }
-
-    function getAll(){
-        return $this->definitions[$this->id] +
-        array(
-            'version' => $this->getVersion(),
-            'date' => $this->getDate(),
-            'full-id' => $this->getFullId()
-        );
-    }
-}
-
 class Publisher{
     
     var $bookiHost = 'booki.flossmanuals.net';
@@ -120,7 +49,7 @@ class Publisher{
             'mode' => $this->publishingMethods[$type]['mode'],
         );
         if($type == 'html'){
-            $queryParams['html_template'] = $this->encodeTemplate('template.html');
+            $queryParams['html_template'] = $this->encodeTemplate("{$this->baseDir}/{$template_file}", $this->bookVars);
         }
         if($type == 'book'){
             $queryParams['booksize'] = 'A4';
@@ -163,7 +92,6 @@ class Publisher{
         
     function massageHtml(){
 
-
         require_once 'simpledom.inc.php';
 
         echo "Starting cleanup\n";
@@ -200,7 +128,8 @@ class Publisher{
             }
           }
         }
-
+        $html->clear();
+        
         //delete the first $chapters[$previous_page] that was created when $previous_page was not initialized
         unset($chapters['']);
 
@@ -235,8 +164,9 @@ class Publisher{
 
         	// we need to save and load the dom again because we add some html elements and they need to get registered in the dom.  Maybe there is a html->refresh
         	file_put_contents("{$this->publishDir}/{$chapter['old_path']}", $html);
+            $html->clear();
+        	
         	$html = file_get_html("{$this->publishDir}/{$chapter['old_path']}");	
-
         	//change links
         	foreach ($html->find('a') as $a){
         		if(in_array($a->href, array_keys($chapters))){
@@ -250,9 +180,9 @@ class Publisher{
         	foreach ($html->find('img') as $a){
         		$a->src='../'.$a->src;
         	}
-
         	//update files
         	file_put_contents("{$this->publishDir}/{$chapter['old_path']}", $html);
+            $html->clear();
 
         	//move all files to their new place	
         	exec("mv {$this->publishDir}/{$chapter['old_path']} {$this->publishDir}/{$chapter['new_path']}");
@@ -272,6 +202,7 @@ class Publisher{
         	$img->src=substr($img->src, 3);
         }
         file_put_contents("{$this->publishDir}/index.php", $html);
+        $html->clear();
 
         // a function to make nice looking urls 
     }
@@ -280,10 +211,10 @@ class Publisher{
     	return strtolower(preg_replace(array("/[^a-zA-Z0-9\s]/", "/\h/"), array("", "-"), $string));
     }
     
-    function encodeTemplate($template_file){
-        $template=file_get_contents("{$this->baseDir}/{$template_file}");
+    function encodeTemplate($template_file, $vars){
+        $template=file_get_contents($template_file);
         $x=0;
-        foreach($this->bookVars as $s=>$r){
+        foreach($vars as $s=>$r){
         	$search[$x++]='{{{'.$s.'}}}';
         	$replace[$x]=$r;
         }
@@ -291,6 +222,3 @@ class Publisher{
     }    
     
 }
-
-
-

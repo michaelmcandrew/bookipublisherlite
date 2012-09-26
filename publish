@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+require_once('publisher.class.php');
+require_once('book.class.php');
+//initialise book
+
+$book = new Book;
+$book->version = 4.2;
+
+//check book is defined
+
+if(isset($argv[1]) && array_key_exists($argv[1], $book->definitions)){
+	$book->id = $argv[1];
+} else {
+	exit("{$argv[1]} is not a defined book\n");
+}
+
+// initialise book publisher
+
+$publisher = new Publisher($book->getAll());
+
+//download files
+
+$publisher->download('epub');
+$publisher->download('pdf');
+$publisher->download('html');
+
+//massage html in online version
+
+$publisher->massageHtml();
+
+
+
+
+
+
+

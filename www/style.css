@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 body {
 	font-family: Cantarell,Helvetica,Arial,sans-serif;
 	margin: 0;
@@ -11,8 +12,17 @@ body {
 iframe { 
 	border: 0;
 }
+
+.gsc-result .gs-title {
+    height: auto;
+    overflow: visible;
+}
+#version a, #supertitle a {
+	text-decoration: underline;
+}
+
 a {
-	color: #1f1f1f;
+	color: #A66054;
 	text-decoration: none;
 	padding: 2px;
 }
@@ -35,7 +45,7 @@ h1, h2, h3 {
 
 
 h1 {
-	padding-bottom: 8px;
+	padding: 12px 0px;
 	font-size: 24px;
 }
 h2 {
@@ -62,8 +72,8 @@ li {
 	border-bottom: solid 6px #8FCE6A;
 }
 
-#version {	
-	padding: 8  px;
+#version, #supertitle {	
+	padding: 8px;
 	padding-left: 15px;
 	color: #A66054;
 	font-size: 12px;
@@ -92,6 +102,7 @@ li {
 	width: 200px;
 	padding: 15px;
 	font-size: 12px;
+	color: #FFF;
 }
 .nav {
 	float: right;	
