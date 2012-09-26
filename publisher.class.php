@@ -29,11 +29,11 @@ class Publisher{
         
         $this->bookVars = $bookVars;
         $this->downloadTime = date('Y.m.d-h.i.s');
-        echo "ID is {$this->downloadTime}\n";
+        echo "Will be available at {$this->bookVars['name']}/source/{$this->bookVars['version']}-{$this->downloadTime}\n";
         // ...creating the publish directory
 
         $this->baseDir = dirname(__FILE__);
-        $this->publishDir = "{$this->baseDir}/www/{$this->bookVars['name']}/source/{$this->downloadTime}";
+        $this->publishDir = "{$this->baseDir}/www/{$this->bookVars['name']}/source/{$this->bookVars['version']}-{$this->downloadTime}";
         exec("mkdir -p {$this->publishDir}");
 
     }
@@ -49,7 +49,7 @@ class Publisher{
             'mode' => $this->publishingMethods[$type]['mode'],
         );
         if($type == 'html'){
-            $queryParams['html_template'] = $this->encodeTemplate("{$this->baseDir}/{$template_file}", $this->bookVars);
+            $queryParams['html_template'] = $this->encodeTemplate("{$this->baseDir}/template.html", $this->bookVars);
         }
         if($type == 'book'){
             $queryParams['booksize'] = 'A4';
@@ -94,7 +94,9 @@ class Publisher{
 
         require_once 'simpledom.inc.php';
 
-        echo "Starting cleanup\n";
+        echo " Cleaning html\n";
+
+        echo " * defining new directory structure, links, etc.\n";
 
         $contents = file_get_html("{$this->publishDir}/contents.html");
         
@@ -128,18 +130,18 @@ class Publisher{
             }
           }
         }
-        $html->clear();
+        $contents->clear();
         
         //delete the first $chapters[$previous_page] that was created when $previous_page was not initialized
         unset($chapters['']);
 
         //create all section directories
-        echo "Creating section directories\n";
+        echo "* creating section directories\n";
         foreach ($sections as $section){
         	exec("mkdir {$this->publishDir}/{$section['path']}");
         }
 
-        echo "Editing HTML (links and images)\n";
+        echo "* editing HTML (links and images)\n";
         foreach ($chapters as $chapter){
         	$html = file_get_html("{$this->publishDir}/{$chapter['old_path']}");
         	$navs=$html->find('div[class=nav]');
@@ -189,7 +191,7 @@ class Publisher{
         }
 
         //create an index.php which is a copy of the first chapter (following same pattern as above)
-        echo "Making index file\n";
+        echo "* making index file\n";
         $first_chapter=reset($chapters);
         exec("cp {$this->publishDir}/{$first_chapter['new_path']} {$this->publishDir}/index.php");
         $html = file_get_html("{$this->publishDir}/index.php");

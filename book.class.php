@@ -8,16 +8,16 @@ class Book{
         'user' => array(
             'name'=>'user',
         	'booki-name'=>'civicrm',
-        	'title'=>'User and administrator guide',
-        	'full-title'=>'CiviCRM user and administrator guide',
+        	'title'=>'CiviCRM user and administrator guide',
+        	'short-title'=>'User and administrator guide',
     ),
         
         
         'developer' => array(
         	'name'=>'developer',
         	'booki-name'=>'civicrm-developer-guide',
-        	'title'=>'Developer guide',
-        	'full-title'=>'CiviCRM developer guide',
+        	'title'=>'CiviCRM Developer guide',
+        	'short-title'=>'Developer guide',
         )
     );
     
