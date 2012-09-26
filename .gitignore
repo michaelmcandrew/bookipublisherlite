@@ -1,8 +1,8 @@
 www/*
 !www/.htaccess
 !www/style.css
+!www/search.php
 !www/index.php
 !www/not-found.php
 !www/download.png
-!www/developer/version/index.php
-!www/user/version/index.php
+!www/*/version/index.php
