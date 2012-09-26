@@ -9,10 +9,9 @@ RewriteRule !^(user|developer)/(current|version|source) /%1/current/%2
 RewriteRule .+\..+ - [L]
 
 #otherwise add .php to it
-RewriteRule (.+) -> /%1.php
+RewriteRule (.+) -> /%1.php 
 
 ErrorDocument 404 /not-found.php
-DefaultType text/html
 
 
 
