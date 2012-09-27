@@ -94,9 +94,9 @@ class Publisher{
 
         require_once 'simpledom.inc.php';
 
-        echo " Cleaning html\n";
+        echo "Cleaning html\n";
 
-        echo " * defining new directory structure, links, etc.\n";
+        echo "* defining new directory structure, links, etc.\n";
 
         $contents = file_get_html("{$this->publishDir}/contents.html");
         
