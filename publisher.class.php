@@ -176,11 +176,11 @@ class Publisher{
         			if($chapter['old_path']==$a->href){
         				$a->class='current';			
         			}
-        			$a->href='../'.$chapters[$a->href]['new_link'];
+        			$a->href='../../'.$chapters[$a->href]['new_link'];
         		}
         	}
         	foreach ($html->find('img') as $a){
-        		$a->src='../'.$a->src;
+        		$a->src='../../'.$a->src;
         	}
         	//update files
         	file_put_contents("{$this->publishDir}/{$chapter['old_path']}", $html);
@@ -196,12 +196,12 @@ class Publisher{
         exec("cp {$this->publishDir}/{$first_chapter['new_path']} {$this->publishDir}/index.php");
         $html = file_get_html("{$this->publishDir}/index.php");
         foreach ($html->find('a') as $a){
-        	if(substr($a->href, 0, 3)=='../'){
-        		$a->href=substr($a->href, 3);		
+        	if(substr($a->href, 0, 6)=='../../'){
+        		$a->href=substr($a->href, 6);		
         	}
         }
         foreach ($html->find('img') as $img){
-        	$img->src=substr($img->src, 3);
+        	$img->src=substr($img->src, 6);
         }
         file_put_contents("{$this->publishDir}/index.php", $html);
         $html->clear();
