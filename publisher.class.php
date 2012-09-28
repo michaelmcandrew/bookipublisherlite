@@ -75,7 +75,14 @@ class Publisher{
         // download the url
         
         $remoteUrl = "http://{$this->objaviHost}/books/{$remoteFile}";
-        $localFile = "{$this->publishDir}/{$this->bookVars['full-id']}.$extension";        
+        $localFile = "{$this->publishDir}/{$this->bookVars['full-id']}.$extension";
+
+        echo "* Powernapping for 5 seconds...\n";
+
+        sleep(5);
+
+        echo "* I needed that! Waking up again now...\n";
+
         file_put_contents($localFile, file_get_contents($remoteUrl));
         
         // if this is templated html, we need to untar the tar, and then delete the tar
