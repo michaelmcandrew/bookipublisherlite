@@ -62,8 +62,6 @@ class Publisher{
         curl_close($ch);
 
         // find the download link in the page                
-        $contents=implode($output);
-        print_r($contents);exit;
         preg_match('#href(.+)books/(.+)">#', $contents, $matches);
         $remoteFile = $matches[2];
         $extension = $this->publishingMethods[$type]['extension'];
