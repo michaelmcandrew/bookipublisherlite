@@ -51,7 +51,7 @@ class Publisher{
         if($type == 'html'){
             $queryParams['html_template'] = $this->encodeTemplate("{$this->baseDir}/template.html", $this->bookVars);
         }
-        if($type == 'book'){
+        if($type == 'pdf'){
             $queryParams['booksize'] = 'A4';
         }
                 
@@ -77,12 +77,6 @@ class Publisher{
         $remoteUrl = "http://{$this->objaviHost}/books/{$remoteFile}";
         $localFile = "{$this->publishDir}/{$this->bookVars['full-id']}.$extension";
 
-        echo "* Powernapping for 5 seconds...\n";
-
-        sleep(5);
-
-        echo "* I needed that! Waking up again now...\n";
-
         file_put_contents($localFile, file_get_contents($remoteUrl));
         
         // if this is templated html, we need to untar the tar, and then delete the tar
@@ -92,7 +86,7 @@ class Publisher{
             // the --strip-components means that we remove the first directory, which is handy!
             
             exec("tar --strip-components 1 -xf {$localFile} -C {$this->publishDir}");
-            exec("rm {$localFile}");
+                exec("rm {$localFile}");
         }
         
     }
