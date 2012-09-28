@@ -41,7 +41,6 @@ class Publisher{
     function download($type){
         
         // create an appropriate download url for the book we want to download
-        
         $queryParams = array(
             'book' => $this->bookVars['booki-name'],
             'title' => $this->bookVars['title'],
@@ -54,39 +53,35 @@ class Publisher{
         if($type == 'pdf'){
             $queryParams['booksize'] = 'A4';
         }
+        $url = "http://{$this->objaviHost}/?".http_build_query($queryParams);
                 
         // call the URL that will produce the book
-        $url = "http://{$this->objaviHost}/?".http_build_query($queryParams);
-        exec("wget -q -O - {$url}", $output);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $contents = curl_exec($ch);
+        curl_close($ch);
 
-        // find the download link in the page
-                
+        // find the download link in the page                
         $contents=implode($output);
+        print_r($contents);exit;
         preg_match('#href(.+)books/(.+)">#', $contents, $matches);
-
         $remoteFile = $matches[2];
-
         $extension = $this->publishingMethods[$type]['extension'];
-        
         // if this is templated html, we need to download the tar.gz, but the link is to the dir, so lets add .tar.gz
-        
         if($type == 'html'){
             $remoteFile .= ".{$extension}";
         }
 
         // download the url
-        
         $remoteUrl = "http://{$this->objaviHost}/books/{$remoteFile}";
         $localFile = "{$this->publishDir}/{$this->bookVars['full-id']}.$extension";
 
         file_put_contents($localFile, file_get_contents($remoteUrl));
         
         // if this is templated html, we need to untar the tar, and then delete the tar
-        
         if($type == 'html'){
             
             // the --strip-components means that we remove the first directory, which is handy!
-            
             exec("tar --strip-components 1 -xf {$localFile} -C {$this->publishDir}");
                 exec("rm {$localFile}");
         }
