@@ -55,11 +55,13 @@ class Publisher{
             $queryParams['booksize'] = 'A4';
         }
                 
+        // call the URL that will produce the book
         $url = "http://{$this->objaviHost}/?".http_build_query($queryParams);
+        exec("wget -q -O - {$url}", $output);
 
         // find the download link in the page
                 
-        $contents=file_get_contents($url);
+        $contents=implode($output);
         preg_match('#href(.+)books/(.+)">#', $contents, $matches);
 
         $remoteFile = $matches[2];
