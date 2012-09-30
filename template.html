@@ -3,7 +3,6 @@
 <html>
 <head>
 	  <title></title>
-  	<?php require_once("{$_SERVER['DOCUMENT_ROOT']}/../head.inc.php") ?>
       <script>
         (function() {
           var cx = '015078211275853146731:a_jgoxrdufw';
@@ -17,11 +16,12 @@
       
 </head>
 <body>
+    <?php $full_id="{{{full-id}}}"?>
     <link href='/style.css' rel='stylesheet' type='text/css'>
 <iframe scrolling="no" style="max-height: 35px; border: 0px; width: 100%; display: block;" src="http://civicrm.org/sites/civicrm.org/developers/index.html"></iframe>
 <div id='header'>
-	<?php require_once("{$_SERVER['DOCUMENT_ROOT']}/../search-box.inc.php") ?>
-    <div id='version'><a href='/'>CiviCRM books</a> {{{short-title}}} for version {{{version}}}. Published {{{date}}} <?php $full_id="{{{full-id}}}"; require_once("{$_SERVER['DOCUMENT_ROOT']}/../archives.inc.php"); ?></div>
+	<?php include("{$_SERVER['DOCUMENT_ROOT']}/../search-box.inc.php") ?>
+    <div id='version'><a href='/'>CiviCRM books</a>: {{{short-title}}} for version {{{version}}}. Published {{{date}}} <?php include("{$_SERVER['DOCUMENT_ROOT']}/../archives.inc.php"); ?>.</div>
 	<h1>{{{title}}}</h1>
 </div>
 <div id='menu'>
@@ -34,13 +34,14 @@
 	<div class='nav'></div>
 </div>
 <div id='right-menu'>
-        <?php require_once("{$_SERVER['DOCUMENT_ROOT']}/../right.inc.php") ?>
+        <?php include("{$_SERVER['DOCUMENT_ROOT']}/../right.inc.php") ?>
 </div>
 
 
 <div id='footer'>
-    <p><a href="/">CiviCRM Books</a>{{{name}}}. Written for CiviCRM {{{version}}}. Published {{{published-date}}} under <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2+</a>. View <a href="/{{{dir_name}}}/version">older editions of this book</a>.</p>
-    <p>CiviCRM documentation is community driven. You can <a href="http://civicrm.org/participate/documentation">help improve documentation</a>. This book is powered by <a href="http://www.flossmanuals.org/">Flossmanuals</a>.</p>
+    <p>{{{title}}} for version {{{version}}}. Published {{{date}}} under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2+</a> license.
+    <p>CiviCRM documentation is community driven. You can <a href="http://civicrm.org/participate/documentation">help improve documentation</a>.</p>
+    <p>CiviCRM books are written using <a id="fmlogo" href="http://www.flossmanuals.org/">Flossmanuals</a>.</p>
 </div>
 </body>
 </html>
