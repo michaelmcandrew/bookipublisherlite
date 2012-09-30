@@ -174,6 +174,12 @@ p, li, #content {
     padding-bottom:4px;
 }
 
+hr{
+    border: 1px solid #8fce6a;
+	
+}
+
+
 #formats img{
     vertical-align:middle;
 }
