@@ -5,7 +5,7 @@ require_once('book.class.php');
 //initialise book
 
 $book = new Book;
-$book->version = 4.2;
+$book->version = 4.4;
 
 //check book is defined
 
@@ -22,8 +22,8 @@ $publisher = new Publisher($book->getAll());
 //download files
 echo "Downloading epub...\n";
 $publisher->download('epub');
-echo "Downloading pdf...\n";
-$publisher->download('pdf');
+// echo "Downloading pdf...\n";
+// $publisher->download('pdf');
 echo "Downloading html...\n";
 $publisher->download('html');
 
