@@ -1,5 +1,6 @@
 <?php
-$types=array('pdf','epub');
+// $types=array('pdf','epub');
+$types=array('epub');
 foreach($types as $type){
     $file[$type]="{$full_id}.{$type}";
     while(!file_exists($file[$type])){
