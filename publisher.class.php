@@ -176,6 +176,9 @@ class Publisher{
         		}
         	}
         	foreach ($html->find('img') as $a){
+			if(substr($a->src,0,15) == '/civicrm/_edit/'){
+				$a->src = substr($a->src,15);
+			}
         		$a->src='../../'.$a->src;
         	}
         	//update files
